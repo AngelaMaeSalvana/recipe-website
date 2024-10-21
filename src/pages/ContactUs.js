@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { init } from 'emailjs-com';
 import emailjs from 'emailjs-com'; 
-import '../App.css'; // Adjust the import based on your CSS structure
+import '../App.css'; 
 import LandingNav from '../components/LandingNav';
 import ToastNotification from '../components/ToastNotification';
 
-// Initialize EmailJS with your User ID
 init('uPlXIivG8XVPFQkkL');
 
 const ContactUs = () => {
@@ -22,7 +21,7 @@ const ContactUs = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData); // Log the form data
+    console.log('Form Data:', formData); 
 
     emailjs.send('service_n3ste0w', 'template_6gq557u', formData)
         .then((response) => {
@@ -46,9 +45,12 @@ const ContactUs = () => {
     <div className='contact-container'>
       <ToastNotification toastMessage={toastMessage} />
       <LandingNav />
-      <div className='contact-form'>
+      <div className='contact-text'>
         <h1>Contact Us</h1>
         <p>We’d love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out to us using the information below.</p>
+      </div>
+      
+      <div className='contact-form'>
 
         <form onSubmit={handleSubmit}>
           <label htmlFor='name'>Name:</label><br />
@@ -81,7 +83,7 @@ const ContactUs = () => {
             required
           ></textarea><br />
 
-          <button className='primary-btn' type='submit'>Send Message</button>
+          <button className='another-btn' type='submit'>Send Message</button>
         </form>
       </div>
     </div>

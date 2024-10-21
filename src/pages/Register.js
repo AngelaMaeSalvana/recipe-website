@@ -1,7 +1,6 @@
-// src/pages/Register.js
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase'; // Make sure to adjust the path based on your structure
+import { auth } from '../firebase'; 
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -9,14 +8,14 @@ const Register = () => {
     const [error, setError] = useState('');
 
     const handleRegister = async (e) => {
-        e.preventDefault(); // Prevent the default form submission
-        setError(''); // Reset error state
+        e.preventDefault(); 
+        setError(''); 
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             console.log('User registered successfully');
         } catch (error) {
-            setError(error.message); // Set error message if registration fails
+            setError(error.message); 
             console.error('Error registering user:', error.message);
         }
     };

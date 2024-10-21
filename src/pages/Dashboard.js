@@ -1,23 +1,23 @@
 // src/pages/Dashboard.js
 import React, { useState } from 'react';
-import { auth } from '../firebase'; // Import Firebase auth
+import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
-import AddRecipe from './AddRecipe'; // Import your AddRecipe component
-import RecipeList from './RecipeList'; // Import your RecipeList component
-import Login from './Login'; // Import your Login component
-import Register from './Register'; // Import your Register component
+import AddRecipe from './AddRecipe'; 
+import RecipeList from './RecipeList'; 
+import Login from './Login'; 
+import Register from './Register'; 
 
 const Dashboard = () => {
-  const [user, setUser] = useState(auth.currentUser); // Get the current user
+  const [user, setUser] = useState(auth.currentUser); 
   const [isRegistering, setIsRegistering] = useState(false);
 
   const handleLogout = async () => {
     await signOut(auth);
-    setUser(null); // Clear user state on logout
+    setUser(null); 
   };
 
   const toggleRegister = () => {
-    setIsRegistering((prev) => !prev); // Toggle between login and register
+    setIsRegistering((prev) => !prev); 
   };
 
   return (

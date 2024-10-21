@@ -1,16 +1,14 @@
-// src/AddRecipe.js
 import React, { useState } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc } from "firebase/firestore";
 
-const AddRecipe = ({ userId }) => { // Accept userId as a prop
+const AddRecipe = ({ userId }) => { 
   const [recipe, setRecipe] = useState({
     title: '',
-    ingredients: [''], // Initialize with an empty ingredient
-    procedures: [''],   // Initialize with an empty procedure
+    ingredients: [''], 
+    procedures: [''],  
   });
 
-  // Handle input changes for title and array fields (ingredients, procedures)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecipe(prevRecipe => ({
@@ -19,7 +17,6 @@ const AddRecipe = ({ userId }) => { // Accept userId as a prop
     }));
   };
 
-  // Handle changes for ingredients and procedures specifically
   const handleArrayChange = (e, index, type) => {
     const value = e.target.value;
     setRecipe(prevRecipe => {
@@ -29,11 +26,10 @@ const AddRecipe = ({ userId }) => { // Accept userId as a prop
     });
   };
 
-  // Add a new ingredient or procedure input
   const addArrayItem = (type) => {
     setRecipe(prevRecipe => ({
       ...prevRecipe,
-      [type]: [...prevRecipe[type], ''] // Add a new empty string to the array
+      [type]: [...prevRecipe[type], ''] 
     }));
   };
 
@@ -44,13 +40,13 @@ const AddRecipe = ({ userId }) => { // Accept userId as a prop
         title: recipe.title,
         ingredients: recipe.ingredients,
         procedures: recipe.procedures,
-        date_created: new Date().toISOString(), // Current timestamp for creation
-        date_updated: new Date().toISOString(), // Current timestamp for update
-        recipe_id: Math.floor(Math.random() * 1000) + 1, // Random recipe ID
-        user_id: userId // Store the userId with the recipe
+        date_created: new Date().toISOString(),
+        date_updated: new Date().toISOString(), 
+        recipe_id: Math.floor(Math.random() * 1000) + 1,
+        user_id: userId 
       });
       alert('Recipe added successfully!');
-      setRecipe({ title: '', ingredients: [''], procedures: [''] }); // Reset form
+      setRecipe({ title: '', ingredients: [''], procedures: [''] }); 
     } catch (err) {
       console.error("Error adding recipe: ", err);
       alert('Error adding recipe');

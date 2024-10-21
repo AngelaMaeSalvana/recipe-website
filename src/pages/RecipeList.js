@@ -1,20 +1,19 @@
-// src/RecipeList.js
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, query, orderBy, where, getDocs } from "firebase/firestore";
 
-const RecipeList = ({ userId }) => { // Accept userId as a prop
+const RecipeList = ({ userId }) => { 
   const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true); // Optional: to manage loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        // Query recipes where userId matches and order by createdAt
+       
         const q = query(
           collection(db, 'recipes'),
-          where('user_id', '==', userId), // Ensure user_id matches Firestore field name
-          orderBy('date_created', 'desc') // Ensure date_created matches Firestore field name
+          where('user_id', '==', userId),
+          orderBy('date_created', 'desc') 
         );
         const querySnapshot = await getDocs(q);
         const recipeList = querySnapshot.docs.map(doc => ({
@@ -25,7 +24,7 @@ const RecipeList = ({ userId }) => { // Accept userId as a prop
       } catch (err) {
         console.error("Error fetching recipes: ", err);
       } finally {
-        setLoading(false); // Stop loading once the query is done
+        setLoading(false); 
       }
     };
 
@@ -35,7 +34,7 @@ const RecipeList = ({ userId }) => { // Accept userId as a prop
   }, [userId]);
 
   if (loading) {
-    return <p>Loading recipes...</p>; // Optional loading state
+    return <p>Loading recipes...</p>; 
   }
 
   return (

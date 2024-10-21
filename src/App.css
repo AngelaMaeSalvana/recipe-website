@@ -15,7 +15,6 @@
     --primaryColor: #f16c4f;
     --secondaryColor:#f3b13c;
     --hoverColor: #ce4223ee;
-    --largeFont: 1.5rem;
 }
 body{
     width: 100vw;
@@ -42,9 +41,22 @@ body{
     border: .5px solid var(--primaryColor);
     border-radius: 4px ;
 }
-.secondary-btn:hover{
+.secondary-btn:hover, .another-btn:hover{
     background-color: var(--hoverColor);
     color: var(--white);
+}
+.another-btn{
+    padding: 5px 10px;
+    background-color: var(--secondaryColor);
+    border: .5px solid var(--primaryColor);
+    border-radius: 4px ;
+}
+.disabled-button{
+    padding: 5px 10px;
+    background-color: var(--white);
+    border: .5px solid var(--primaryColor);
+    border-radius: 4px ;
+
 }
 .nav-con{
     width: 100%;
@@ -119,11 +131,15 @@ body{
     gap: 5px;
 }
 
-.landing-container{
+.landing-container,.contact-container{
     width: 100vw;
     height: 100vh;
     display: grid;
+    grid-template-columns: 100%;
     grid-template-rows: 7% 93%;
+}
+.contact-container{
+    grid-template-rows: 7% 18% 75%;
 }
 .hero-con{
     display: grid;
@@ -165,10 +181,19 @@ body{
     transition: ease-in 2s ease; /* Smooth transition for opacity */
   }
 
+  .contact-text{
+    padding: 20px 10px 0 10px;
+  }
+  .contact-text h1{
+    font-family: Halimun;
+  }
   .contact-form{
-    padding: 30px;
-    /* width: 100%; */
+    padding: 10px;
+    width: 100%;
     height: 100%;
+    
+    background: url(../src//assets/bg1.png);
+    backdrop-filter: blur(6px);
     /* background: aliceblue; */
   }
   .contact-form form{
@@ -182,14 +207,15 @@ body{
     align-items: stretch;
     justify-content: center;
     align-content: center;
+    font-weight: 600;
   }
   .contact-form form input,.contact-form form textarea{
     padding: 5px 10px;
     width: 400px;
-    border: none;
+    border: 1px solid var(--primaryColor);
     outline: none;
     border-radius: 4px;
     font-size: 1.1rem;
-    background-color: rgb(219, 219, 219);
+    background-color: var(--white)
   }
   
